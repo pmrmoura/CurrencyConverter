@@ -46,6 +46,8 @@ final class SelectCountryView: UIView, ViewCode {
         NSLayoutConstraint.activate([
             mainStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             mainStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            mainStackView.topAnchor.constraint(equalTo: self.topAnchor),
+            mainStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
     }
     
