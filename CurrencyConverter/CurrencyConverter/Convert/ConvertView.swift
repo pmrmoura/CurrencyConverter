@@ -9,6 +9,8 @@ import UIKit
 
 final class ConvertView: UIView, ViewCode {
     
+    lazy var mainVStack = UIStackView()
+    lazy var currencyListHStack = UIStackView()
     lazy var currencyList = UIButton()
     lazy var hStack = UIStackView()
     lazy var originCurrency = SelectCountryView()
@@ -25,9 +27,17 @@ final class ConvertView: UIView, ViewCode {
     }
     
     func addSubViews() {
-        [currencyList, hStack]
+        self.addSubview(mainVStack)
+        self.mainVStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        [currencyListHStack, hStack]
             .forEach {
-                addSubview($0)
+                mainVStack.addArrangedSubview($0)
+                $0.translatesAutoresizingMaskIntoConstraints = false
+            }
+        [currencyList]
+            .forEach {
+                currencyListHStack.addArrangedSubview($0)
                 $0.translatesAutoresizingMaskIntoConstraints = false
             }
         [originCurrency, desinationCurrencyArrow, destinationCurrency]
@@ -39,20 +49,26 @@ final class ConvertView: UIView, ViewCode {
     
     func setupContraints() {
         NSLayoutConstraint.activate([
-            self.currencyList.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8.0),
-            self.currencyList.topAnchor.constraint(equalTo: self.topAnchor, constant: 20.0),
-            self.currencyList.widthAnchor.constraint(equalToConstant: 100),
-            self.currencyList.heightAnchor.constraint(equalToConstant: 100),
-            
-            self.hStack.topAnchor.constraint(equalTo: self.currencyList.bottomAnchor, constant: 30),
-            self.hStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            self.hStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            self.hStack.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.mainVStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            self.mainVStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            self.mainVStack.topAnchor.constraint(equalTo: self.topAnchor, constant: 40)
         ])
     }
     
     func setupAdditionalConfiguration() {
         self.backgroundColor = .white
+        
+        self.mainVStack.axis = .vertical
+        self.mainVStack.alignment = .fill
+        self.mainVStack.distribution = .fillEqually
+        self.mainVStack.spacing = 20
+        
+        self.currencyListHStack.axis = .vertical
+        self.currencyListHStack.alignment = .trailing
+        
+        self.hStack.axis = .horizontal
+        self.hStack.alignment = .fill
+        self.hStack.distribution = .equalSpacing
         
         let currencyListButtonConfiguration = UIImage.SymbolConfiguration(pointSize: 35, weight: .thin)
         let currencyListButtonImage = UIImage(systemName: "globe", withConfiguration: currencyListButtonConfiguration)?.withTintColor(.black, renderingMode: .alwaysOriginal)
@@ -61,9 +77,5 @@ final class ConvertView: UIView, ViewCode {
         let destinationArrowConfiguration = UIImage.SymbolConfiguration(pointSize: 35, weight: .semibold)
         let destinationArrowImage = UIImage(systemName: "arrow.right", withConfiguration: destinationArrowConfiguration)?.withTintColor(.black, renderingMode: .alwaysOriginal)
         self.desinationCurrencyArrow.image = destinationArrowImage
-        
-        hStack.axis = .horizontal
-        hStack.alignment = .fill
-        hStack.distribution = .equalSpacing
     }
 }
