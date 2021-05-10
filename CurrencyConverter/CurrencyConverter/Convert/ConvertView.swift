@@ -22,6 +22,13 @@ final class ConvertView: UIView, ViewCode {
     
     lazy var originCurrency = SelectCountryView()
     lazy var destinationCurrency = SelectCountryView()
+    lazy var keyboard = KeyboardView()
+    
+    var originValueText = "" {
+        didSet {
+            self.originValue.text = originValueText
+        }
+    }
     
     init() {
         super.init(frame: .zero)
@@ -36,7 +43,7 @@ final class ConvertView: UIView, ViewCode {
         self.addSubview(mainVStack)
         self.mainVStack.translatesAutoresizingMaskIntoConstraints = false
         
-        [currencyListHStack, selectCountriesVStack, valuesToConvertHStack]
+        [currencyListHStack, selectCountriesVStack, valuesToConvertHStack, keyboard]
             .forEach {
                 mainVStack.addArrangedSubview($0)
                 $0.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +70,7 @@ final class ConvertView: UIView, ViewCode {
             self.mainVStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             self.mainVStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             self.mainVStack.topAnchor.constraint(equalTo: self.topAnchor, constant: 40),
-            self.mainVStack.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            self.mainVStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -40),
             
             self.currencyListHStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             self.currencyListHStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
@@ -73,6 +80,9 @@ final class ConvertView: UIView, ViewCode {
             
             self.valuesToConvertHStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             self.valuesToConvertHStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            
+            self.keyboard.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            self.keyboard.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
         ])
     }
     
@@ -102,7 +112,7 @@ final class ConvertView: UIView, ViewCode {
         let destinationArrowImage = UIImage(systemName: "arrow.right", withConfiguration: destinationArrowConfiguration)?.withTintColor(.black, renderingMode: .alwaysOriginal)
         self.desinationCurrencyArrow.image = destinationArrowImage
         
-        self.originValue.text = "0"
+        self.originValue.text = originValueText
         self.originValue.font = UIFont.systemFont(ofSize: 64, weight: .thin)
         self.originValue.textAlignment = .left
         self.originValue.adjustsFontSizeToFitWidth = true

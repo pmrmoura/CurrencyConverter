@@ -22,6 +22,7 @@
 		C16BE51726476B0B009098DC /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16BE51626476B0B009098DC /* ListView.swift */; };
 		C16BE52426478000009098DC /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16BE52326478000009098DC /* ViewCode.swift */; };
 		C16BE52D2647908F009098DC /* SelectCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16BE52C2647908F009098DC /* SelectCountryView.swift */; };
+		C1B3B3C72647CBCE00F7B947 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B3B3C62647CBCE00F7B947 /* KeyboardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		C16BE51626476B0B009098DC /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		C16BE52326478000009098DC /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
 		C16BE52C2647908F009098DC /* SelectCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryView.swift; sourceTree = "<group>"; };
+		C1B3B3C62647CBCE00F7B947 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 		C16BE4F526476A56009098DC /* Convert */ = {
 			isa = PBXGroup;
 			children = (
+				C1B3B3C52647CBC200F7B947 /* Keyboard */,
 				C16BE52B26479074009098DC /* SelectCountry */,
 				C16BE4F626476A91009098DC /* ConvertViewController.swift */,
 				C16BE4FE26476AAC009098DC /* ConvertViewModel.swift */,
@@ -187,6 +190,14 @@
 				C16BE52C2647908F009098DC /* SelectCountryView.swift */,
 			);
 			path = SelectCountry;
+			sourceTree = "<group>";
+		};
+		C1B3B3C52647CBC200F7B947 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				C1B3B3C62647CBCE00F7B947 /* KeyboardView.swift */,
+			);
+			path = Keyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,6 +338,7 @@
 				C12CC0DC2647640A0088709B /* CurrencyConverter.xcdatamodeld in Sources */,
 				C16BE51226476B02009098DC /* ListViewModel.swift in Sources */,
 				C12CC0D22647640A0088709B /* AppDelegate.swift in Sources */,
+				C1B3B3C72647CBCE00F7B947 /* KeyboardView.swift in Sources */,
 				C16BE50D26476AFA009098DC /* ListViewController.swift in Sources */,
 				C12CC0D42647640A0088709B /* SceneDelegate.swift in Sources */,
 			);

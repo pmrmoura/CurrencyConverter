@@ -56,7 +56,6 @@ final class SelectCountryView: UIView, ViewCode {
         mainStackView.alignment  = .center
         
         countryStackView.axis = .horizontal
-//        countryStackView.distribution = .fillProportionally
         countryStackView.alignment = .center
         countryStackView.spacing = 15
         
