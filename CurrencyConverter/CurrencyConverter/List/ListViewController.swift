@@ -10,7 +10,7 @@ import Combine
 
 final class ListViewController: UIViewController {
     var currencies: [String: String] = ["": ""]
-    
+    lazy   var searchBars:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
     let viewModel: ListViewModel
     private var bindings = Set<AnyCancellable>()
     
@@ -37,8 +37,10 @@ final class ListViewController: UIViewController {
         self.setupTableView()
         self.setupBindings()
         
-        let okButton = UIBarButtonItem(title: "Cancelar", style: .done, target: self, action: #selector(self.dismissListView))
-        self.navigationItem.rightBarButtonItem = okButton
+        if (viewModel.isSelectabled) {
+            let okButton = UIBarButtonItem(title: "Cancelar", style: .done, target: self, action: #selector(self.dismissListView))
+            self.navigationItem.rightBarButtonItem = okButton
+        }
     }
 
       override func loadView() {
