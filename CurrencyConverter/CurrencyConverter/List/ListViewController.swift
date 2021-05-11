@@ -15,7 +15,6 @@ final class ListViewController: UIViewController {
     private var bindings = Set<AnyCancellable>()
     
     lazy var listView = ListView()
-    
     var currencieList: [String: String] = ["": ""] {
         didSet {
             self.currencies = currencieList
@@ -37,11 +36,19 @@ final class ListViewController: UIViewController {
         self.title = "Moedas disponíveis"
         self.setupTableView()
         self.setupBindings()
+        
+        let okButton = UIBarButtonItem(title: "Cancelar", style: .done, target: self, action: #selector(self.dismissListView))
+        self.navigationItem.rightBarButtonItem = okButton
     }
-    
+
       override func loadView() {
         self.view = listView
       }
+    
+    @objc func dismissListView() {
+        self.viewModel.chosenCurrency = .none
+        self.dismiss(animated: true, completion: nil)
+    }
     
     private func setupBindings() {
         viewModel.$currencies
@@ -85,7 +92,6 @@ final class ListViewController: UIViewController {
         alertController.addAction(alertAction)
         present(alertController, animated: true, completion: nil)
     }
-
 }
 
 extension ListViewController: UITableViewDataSource {

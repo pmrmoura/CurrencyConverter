@@ -70,16 +70,18 @@ final class ConvertViewController: UIViewController {
     
     @objc func tapOriginCountry() {
         listViewController.viewModel.isSelectabled = true
-        listViewController.modalPresentationStyle = .fullScreen
         listViewController.viewModel.chosenCurrency = .origin
-        present(listViewController, animated: true, completion: nil)
+        let listNavigationController:UINavigationController = UINavigationController(rootViewController: listViewController)
+        listNavigationController.modalPresentationStyle = .fullScreen
+        self.present(listNavigationController, animated: true)
     }
     
     @objc func tapDestinationCountry() {
         listViewController.viewModel.isSelectabled = true
-        listViewController.modalPresentationStyle = .fullScreen
         listViewController.viewModel.chosenCurrency = .destination
-        present(listViewController, animated: true, completion: nil)
+        let listNavigationController:UINavigationController = UINavigationController(rootViewController: listViewController)
+        listNavigationController.modalPresentationStyle = .fullScreen
+        self.present(listNavigationController, animated: true)
     }
     
     func setupBindings() {
