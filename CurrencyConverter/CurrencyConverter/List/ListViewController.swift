@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class ListViewController: UIViewController {
+final class ListViewController: UIViewController, UISearchBarDelegate {
     var currencies: [String: String] = ["": ""]
     lazy   var searchBars:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
     let viewModel: ListViewModel
