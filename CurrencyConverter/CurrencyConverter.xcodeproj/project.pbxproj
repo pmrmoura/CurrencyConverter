@@ -14,6 +14,9 @@
 		C12CC0E12647640B0088709B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C12CC0DF2647640B0088709B /* LaunchScreen.storyboard */; };
 		C12CC0EC2647640B0088709B /* CurrencyConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12CC0EB2647640B0088709B /* CurrencyConverterTests.swift */; };
 		C12CC0F72647640B0088709B /* CurrencyConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12CC0F62647640B0088709B /* CurrencyConverterUITests.swift */; };
+		C14751532649056A00796FC0 /* CurrencyListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14751522649056A00796FC0 /* CurrencyListModel.swift */; };
+		C147515B264906FA00796FC0 /* ListCurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147515A264906FA00796FC0 /* ListCurrencyService.swift */; };
+		C147516026490A6E00796FC0 /* CurrencyDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147515F26490A6E00796FC0 /* CurrencyDataModel.swift */; };
 		C16BE4F726476A91009098DC /* ConvertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16BE4F626476A91009098DC /* ConvertViewController.swift */; };
 		C16BE4FF26476AAC009098DC /* ConvertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16BE4FE26476AAC009098DC /* ConvertViewModel.swift */; };
 		C16BE50426476ABC009098DC /* ConvertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16BE50326476ABC009098DC /* ConvertView.swift */; };
@@ -22,6 +25,9 @@
 		C16BE51726476B0B009098DC /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16BE51626476B0B009098DC /* ListView.swift */; };
 		C16BE52426478000009098DC /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16BE52326478000009098DC /* ViewCode.swift */; };
 		C16BE52D2647908F009098DC /* SelectCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16BE52C2647908F009098DC /* SelectCountryView.swift */; };
+		C19513AE264A374100711400 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19513AD264A374100711400 /* CurrencyCell.swift */; };
+		C1A24B6B264A3B3E00CA055F /* CountryCodeToEmojiFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A24B6A264A3B3E00CA055F /* CountryCodeToEmojiFlag.swift */; };
+		C1A24B71264A42A400CA055F /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A24B70264A42A400CA055F /* ActivityIndicator.swift */; };
 		C1B3B3C72647CBCE00F7B947 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B3B3C62647CBCE00F7B947 /* KeyboardView.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +62,9 @@
 		C12CC0F22647640B0088709B /* CurrencyConverterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyConverterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C12CC0F62647640B0088709B /* CurrencyConverterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterUITests.swift; sourceTree = "<group>"; };
 		C12CC0F82647640B0088709B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C14751522649056A00796FC0 /* CurrencyListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListModel.swift; sourceTree = "<group>"; };
+		C147515A264906FA00796FC0 /* ListCurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCurrencyService.swift; sourceTree = "<group>"; };
+		C147515F26490A6E00796FC0 /* CurrencyDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDataModel.swift; sourceTree = "<group>"; };
 		C16BE4F626476A91009098DC /* ConvertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertViewController.swift; sourceTree = "<group>"; };
 		C16BE4FE26476AAC009098DC /* ConvertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertViewModel.swift; sourceTree = "<group>"; };
 		C16BE50326476ABC009098DC /* ConvertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertView.swift; sourceTree = "<group>"; };
@@ -64,6 +73,9 @@
 		C16BE51626476B0B009098DC /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		C16BE52326478000009098DC /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
 		C16BE52C2647908F009098DC /* SelectCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryView.swift; sourceTree = "<group>"; };
+		C19513AD264A374100711400 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
+		C1A24B6A264A3B3E00CA055F /* CountryCodeToEmojiFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodeToEmojiFlag.swift; sourceTree = "<group>"; };
+		C1A24B70264A42A400CA055F /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		C1B3B3C62647CBCE00F7B947 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +127,8 @@
 		C12CC0D02647640A0088709B /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
+				C1A24B6F264A429500CA055F /* Shared */,
+				C1A24B69264A3B2100CA055F /* Helper */,
 				C16BE52226477FCC009098DC /* Procotol */,
 				C16BE51E26477EC0009098DC /* API */,
 				C16BE50826476AE3009098DC /* List */,
@@ -147,6 +161,23 @@
 			path = CurrencyConverterUITests;
 			sourceTree = "<group>";
 		};
+		C14751502649054E00796FC0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C14751522649056A00796FC0 /* CurrencyListModel.swift */,
+				C147515F26490A6E00796FC0 /* CurrencyDataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C14751512649055400796FC0 /* WebService */ = {
+			isa = PBXGroup;
+			children = (
+				C147515A264906FA00796FC0 /* ListCurrencyService.swift */,
+			);
+			path = WebService;
+			sourceTree = "<group>";
+		};
 		C16BE4F526476A56009098DC /* Convert */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +193,7 @@
 		C16BE50826476AE3009098DC /* List */ = {
 			isa = PBXGroup;
 			children = (
+				C19513AC264A373500711400 /* Cell */,
 				C16BE50C26476AFA009098DC /* ListViewController.swift */,
 				C16BE51126476B02009098DC /* ListViewModel.swift */,
 				C16BE51626476B0B009098DC /* ListView.swift */,
@@ -172,6 +204,8 @@
 		C16BE51E26477EC0009098DC /* API */ = {
 			isa = PBXGroup;
 			children = (
+				C14751512649055400796FC0 /* WebService */,
+				C14751502649054E00796FC0 /* Model */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -190,6 +224,30 @@
 				C16BE52C2647908F009098DC /* SelectCountryView.swift */,
 			);
 			path = SelectCountry;
+			sourceTree = "<group>";
+		};
+		C19513AC264A373500711400 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C19513AD264A374100711400 /* CurrencyCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		C1A24B69264A3B2100CA055F /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C1A24B6A264A3B3E00CA055F /* CountryCodeToEmojiFlag.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		C1A24B6F264A429500CA055F /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C1A24B70264A42A400CA055F /* ActivityIndicator.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		C1B3B3C52647CBC200F7B947 /* Keyboard */ = {
@@ -331,16 +389,22 @@
 			files = (
 				C16BE4F726476A91009098DC /* ConvertViewController.swift in Sources */,
 				C16BE52426478000009098DC /* ViewCode.swift in Sources */,
+				C147515B264906FA00796FC0 /* ListCurrencyService.swift in Sources */,
 				C16BE52D2647908F009098DC /* SelectCountryView.swift in Sources */,
+				C147516026490A6E00796FC0 /* CurrencyDataModel.swift in Sources */,
+				C1A24B6B264A3B3E00CA055F /* CountryCodeToEmojiFlag.swift in Sources */,
 				C16BE51726476B0B009098DC /* ListView.swift in Sources */,
 				C16BE4FF26476AAC009098DC /* ConvertViewModel.swift in Sources */,
 				C16BE50426476ABC009098DC /* ConvertView.swift in Sources */,
+				C19513AE264A374100711400 /* CurrencyCell.swift in Sources */,
 				C12CC0DC2647640A0088709B /* CurrencyConverter.xcdatamodeld in Sources */,
 				C16BE51226476B02009098DC /* ListViewModel.swift in Sources */,
 				C12CC0D22647640A0088709B /* AppDelegate.swift in Sources */,
 				C1B3B3C72647CBCE00F7B947 /* KeyboardView.swift in Sources */,
 				C16BE50D26476AFA009098DC /* ListViewController.swift in Sources */,
 				C12CC0D42647640A0088709B /* SceneDelegate.swift in Sources */,
+				C1A24B71264A42A400CA055F /* ActivityIndicator.swift in Sources */,
+				C14751532649056A00796FC0 /* CurrencyListModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

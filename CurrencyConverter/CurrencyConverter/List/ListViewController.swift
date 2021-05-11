@@ -9,37 +9,73 @@ import UIKit
 import Combine
 
 final class ListViewController: UIViewController {
-//    private let viewModel: ConvertViewModel
-//    private let convertView: ConvertView = ConvertView()
-//    private var bindings = Set<AnyCancellable>()
-
-//    init(viewModel: ConvertViewModel = ConvertViewModel()) {
-//        self.viewModel = viewModel
-//        super.init(nibName: nil, bundle: nil)
-//    }
+    var currencies: [String: String] = ["": ""]
     
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    private let viewModel: ListViewModel
+    private var bindings = Set<AnyCancellable>()
     
-    override func loadView() {
-        self.view = ListView()
-        self.title = "Moedas disponíveis"
+    lazy var listView = ListView()
+    
+    var currencieList: [String: String] = ["": ""] {
+        didSet {
+            self.currencies = currencieList
+            self.listView.tableView.reloadData()
+        }
     }
-
+    
+    init(viewModel: ListViewModel = ListViewModel()) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.title = "Moedas disponíveis"
+        self.setupTableView()
+        self.setupBindings()
+    }
+    
+      override func loadView() {
+        self.view = listView
+      }
+    
+    private func setupBindings() {
+        viewModel.$currencies
+            .assign(to: \.currencieList, on: self)
+            .store(in: &bindings)
         
-        setupTargets()
-        setupBindings()
+        viewModel.$isLoading
+            .assign(to: \.isLoading, on: self.listView)
+            .store(in: &bindings)
     }
     
-    func setupTargets() {
-        //
+      func setupTableView() {
+        listView.tableView.register(CurrencyCell.self, forCellReuseIdentifier: "cellID")
+        listView.tableView.dataSource = self
+        self.viewModel.fetchCurrencies()
+      }
+}
+
+extension ListViewController: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return currencies.count
+  }
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let countryCell = listView.tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
+    
+    guard let cell = countryCell as? CurrencyCell else {
+        fatalError("")
     }
     
-    func setupBindings() {
-        //
-    }
+    let itemToShow = Array(self.currencies)[indexPath.row]
+    cell.countryFlag.text = flag(country: itemToShow.key)
+    cell.countryCode.text = itemToShow.value
+    cell.countryName.text = itemToShow.key
+
+    return cell
+  }
 }
