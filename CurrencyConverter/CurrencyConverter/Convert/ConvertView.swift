@@ -30,6 +30,12 @@ final class ConvertView: UIView, ViewCode {
         }
     }
     
+    var destinationValueText = "" {
+        didSet {
+            self.destinationValue.text = destinationValueText
+        }
+    }
+    
     init() {
         super.init(frame: .zero)
         setupView()
@@ -126,5 +132,8 @@ final class ConvertView: UIView, ViewCode {
         self.destinationValue.text = "0"
         self.destinationValue.font = UIFont.systemFont(ofSize: 64, weight: .thin)
         self.destinationValue.textAlignment = .right
+        self.destinationValue.adjustsFontSizeToFitWidth = true
+        self.destinationValue.numberOfLines = 1
+        self.destinationValue.minimumScaleFactor = 0.2
     }
 }

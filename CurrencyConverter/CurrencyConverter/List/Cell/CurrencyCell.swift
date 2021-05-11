@@ -45,8 +45,6 @@ final class CurrencyCell: UITableViewCell, ViewCode {
     }
 
     func setupAdditionalConfiguration() {
-        self.selectionStyle = .none
-        
         self.horizontalStackView.axis = .horizontal
         self.horizontalStackView.alignment = .fill
         self.horizontalStackView.distribution = .fillEqually

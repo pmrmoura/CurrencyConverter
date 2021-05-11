@@ -12,6 +12,7 @@ final class ConvertViewController: UIViewController {
     private let viewModel: ConvertViewModel
     private let convertView: ConvertView = ConvertView()
     private var bindings = Set<AnyCancellable>()
+    let listViewController = ListViewController()
 
     init(viewModel: ConvertViewModel = ConvertViewModel()) {
         self.viewModel = viewModel
@@ -28,15 +29,17 @@ final class ConvertViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
         setupTargets()
         setupBindings()
+        
+        viewModel.fetchExchangeRates()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        self.handleChosenCurrency()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -55,11 +58,45 @@ final class ConvertViewController: UIViewController {
         
         let currencyListButton = convertView.currencyList
         currencyListButton.addTarget(self, action: #selector(navigateToCurrencyList), for: .touchUpInside)
+        
+        let originCountryButton = convertView.originCurrency
+        let tapOriginCountryButton = UITapGestureRecognizer(target: self, action: #selector(tapOriginCountry))
+        originCountryButton.addGestureRecognizer(tapOriginCountryButton)
+        
+        let destinationCountryButton = convertView.destinationCurrency
+        let tapDestinationCountryButton = UITapGestureRecognizer(target: self, action: #selector(tapDestinationCountry))
+        destinationCountryButton.addGestureRecognizer(tapDestinationCountryButton)
+    }
+    
+    @objc func tapOriginCountry() {
+        listViewController.viewModel.isSelectabled = true
+        listViewController.modalPresentationStyle = .fullScreen
+        listViewController.viewModel.chosenCurrency = .origin
+        present(listViewController, animated: true, completion: nil)
+    }
+    
+    @objc func tapDestinationCountry() {
+        listViewController.viewModel.isSelectabled = true
+        listViewController.modalPresentationStyle = .fullScreen
+        listViewController.viewModel.chosenCurrency = .destination
+        present(listViewController, animated: true, completion: nil)
     }
     
     func setupBindings() {
         viewModel.$originValue
             .assign(to: \.originValueText, on: convertView)
+            .store(in: &bindings)
+        
+        viewModel.$destinationValue
+            .assign(to: \.destinationValueText, on: convertView)
+            .store(in: &bindings)
+        
+        viewModel.$originCountry
+            .assign(to: \.selectedCountry, on: convertView.originCurrency)
+            .store(in: &bindings)
+        
+        viewModel.$destinationCountry
+            .assign(to: \.selectedCountry, on: convertView.destinationCurrency)
             .store(in: &bindings)
     }
     
@@ -71,6 +108,18 @@ final class ConvertViewController: UIViewController {
     @objc func navigateToCurrencyList() {
         let listViewController = ListViewController()
         navigationController?.pushViewController(listViewController, animated: true)
+    }
+    
+    func handleChosenCurrency() {
+        let chosenCurrency = listViewController.viewModel.chosenCurrency
+        switch (chosenCurrency) {
+        case .origin:
+            viewModel.setOriginCountry(selectedCurrency: listViewController.viewModel.selectedCurrency)
+        case .destination:
+            viewModel.setDestinationCountry(selectedCurrency: listViewController.viewModel.selectedCurrency)
+        case .none:
+            print("none")
+        }
     }
 
 }

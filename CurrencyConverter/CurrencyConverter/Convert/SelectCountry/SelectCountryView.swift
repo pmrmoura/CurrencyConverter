@@ -14,6 +14,13 @@ final class SelectCountryView: UIView, ViewCode {
     lazy var countryFlag = UILabel()
     lazy var currencyCode = UILabel()
     lazy var tapToChange = UILabel()
+    
+    var selectedCountry: Currency = Currency(currencyCode: "BRL", countryName: "Brazi", countryFlag: "") {
+        didSet {
+            countryFlag.text = selectedCountry.countryFlag
+            currencyCode.text = selectedCountry.currencyCode
+        }
+    }
 
     init() {
         super.init(frame: .zero)

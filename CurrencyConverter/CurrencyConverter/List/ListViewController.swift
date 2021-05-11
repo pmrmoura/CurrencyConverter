@@ -11,7 +11,7 @@ import Combine
 final class ListViewController: UIViewController {
     var currencies: [String: String] = ["": ""]
     
-    private let viewModel: ListViewModel
+    let viewModel: ListViewModel
     private var bindings = Set<AnyCancellable>()
     
     lazy var listView = ListView()
@@ -56,6 +56,7 @@ final class ListViewController: UIViewController {
       func setupTableView() {
         listView.tableView.register(CurrencyCell.self, forCellReuseIdentifier: "cellID")
         listView.tableView.dataSource = self
+        listView.tableView.delegate = self
         self.viewModel.fetchCurrencies()
       }
 }
@@ -71,11 +72,34 @@ extension ListViewController: UITableViewDataSource {
         fatalError("")
     }
     
+    cell.selectionStyle = viewModel.isSelectabled ? .default : .none
+    
     let itemToShow = Array(self.currencies)[indexPath.row]
+    
     cell.countryFlag.text = flag(country: itemToShow.key)
     cell.countryCode.text = itemToShow.value
     cell.countryName.text = itemToShow.key
 
     return cell
   }
+}
+
+extension ListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        if (viewModel.isSelectabled) {
+            dismiss(animated: false, completion: nil)
+        }
+        
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+    
+        guard let selectedCell = cell as? CurrencyCell else { return }
+        
+        let selectedCurrency = Currency(currencyCode: selectedCell.countryName.text!, countryName: selectedCell.countryCode.text!, countryFlag: selectedCell.countryFlag.text!)
+        
+        viewModel.selectCurrency(selectedCurrency: selectedCurrency)
+    
+        print(viewModel.selectedCurrency)
+    }
 }

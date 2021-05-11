@@ -14,30 +14,15 @@ import Foundation
 //    var currencies: Dictionary<String, String>?
 //}
 
+import Foundation
+
 struct CurrencyListModelError: Decodable {
     var code: Int
     var info: String
 }
 
-import Foundation
-
-// MARK: - Welcome
 struct CurrencyListModel: Decodable {
     let success: Bool
     let terms, privacy: String
     let currencies: [String: String]
-}
-
-// MARK: - Currencies
-struct Currencies: Codable {
-    let aed, afn, all, amd: String
-    let ang: String
-
-    enum CodingKeys: String, CodingKey {
-        case aed = "AED"
-        case afn = "AFN"
-        case all = "ALL"
-        case amd = "AMD"
-        case ang = "ANG"
-    }
 }

@@ -14,16 +14,26 @@ enum ListViewModelState {
     case error(Error)
 }
 
+enum ChosenCurrency {
+    case none
+    case origin
+    case destination
+}
+
 final class ListViewModel {
     @Published private(set) var currencies: [String: String] = ["": ""]
     @Published private(set) var state: ListViewModelState = .loading
     @Published var isLoading = false
+    @Published var isSelectabled = false
+    @Published var selectedCurrency: Currency
+    @Published var chosenCurrency: ChosenCurrency = .none
     
     private var bindings = Set<AnyCancellable>()
     private let listService: ListCurrencyServices
     
     init(listService: ListCurrencyServices = ListCurrencyServices()) {
         self.listService = listService
+        self.selectedCurrency = Currency(currencyCode: "BRL", countryName: "Brazil", countryFlag: "")
     }
     
     func fetchCurrencies() {
@@ -47,5 +57,9 @@ final class ListViewModel {
             .get()
             .sink(receiveCompletion: searchTermCompletionHandler, receiveValue: searchTermValueHandler)
             .store(in: &bindings)
+    }
+    
+    func selectCurrency(selectedCurrency: Currency) {
+        self.selectedCurrency = selectedCurrency
     }
 }
