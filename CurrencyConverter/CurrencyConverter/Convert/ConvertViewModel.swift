@@ -46,7 +46,6 @@ final class ConvertViewModel {
         let searchTermValueHandler: ([String: Double]) -> Void = { [weak self] currencies in
             self?.exchangeRates = currencies
             self?.isLoading = false
-            print(self?.exchangeRates)
         }
         
         self.exchangeRateService
@@ -56,7 +55,7 @@ final class ConvertViewModel {
     }
     
     
-    func handleNumberChange(number: String) {
+    func handleNumberChange(number: String, tag: Int) {
         switch number {
         case "A":
             originValue = "0"
@@ -67,6 +66,20 @@ final class ConvertViewModel {
             }
         case "T":
             (self.originCountry, self.destinationCountry) = (self.destinationCountry, self.originCountry)
+        case ",":
+            originValue += ","
+        case "":
+            switch tag {
+            case 1:
+                (self.originCountry, self.destinationCountry) = (self.destinationCountry, self.originCountry)
+            case 2:
+                originValue.removeLast()
+                if (originValue.isEmpty) {
+                    originValue = "0"
+                }
+            default:
+                originValue = "0"
+            }
         default:
             if originValue == "0" {
                 originValue = number
@@ -100,19 +113,19 @@ final class ConvertViewModel {
             finalValue = (originValueWithPoint! / originRateToUSD!) * destinationRateFromUSD!
         }
         
-//        print(rate)
-        
-        let roundedFinalValue = String(Double(round(1000 * finalValue) / 1000))
+        let roundedFinalValue = String(Double(round(1000 * finalValue) / 1000)).replacingOccurrences(of: ".", with: ",")
         
         self.destinationValue = roundedFinalValue
     }
     
     func setOriginCountry(selectedCurrency: Currency) {
         self.originCountry = selectedCurrency
+        self.handleConvert()
     }
     
     func setDestinationCountry(selectedCurrency: Currency) {
         self.destinationCountry = selectedCurrency
+        self.handleConvert()
     }
     
 }

@@ -10,7 +10,6 @@ import UIKit
 final class KeyboardView: UIView, ViewCode {
     lazy var mainHStack = UIStackView()
     lazy var numbersVStack = UIStackView()
-    lazy var featuresVStack = UIStackView()
     
     init() {
         super.init(frame: .zero)
@@ -36,14 +35,36 @@ final class KeyboardView: UIView, ViewCode {
                 
                 $0.forEach {
                     let numberButton = UIButton()
-                    if ($0 == "1") {
-                        numberButton.tag = 1
-                    }
                     numberButton.setTitle($0, for: UIControl.State())
                     numberButton.setTitleColor(.black, for: UIControl.State())
                     numberButton.backgroundColor = UIColor(white: 0.9, alpha: 1)
                     numberButton.layer.cornerRadius = 20
                     numberButton.clipsToBounds = true
+                    switch $0 {
+                    case "T":
+                        numberButton.backgroundColor = .systemGreen
+                        numberButton.setTitle("", for: UIControl.State())
+                        numberButton.tag = 1
+                        let currencyListButtonConfiguration = UIImage.SymbolConfiguration(pointSize: 25, weight: .thin)
+                        let currencyListButtonImage = UIImage(systemName: "repeat", withConfiguration: currencyListButtonConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+                        numberButton.setImage(currencyListButtonImage, for: UIControl.State())
+                    case "B":
+                        numberButton.backgroundColor = .systemRed
+                        numberButton.setTitle("", for: UIControl.State())
+                        numberButton.tag = 2
+                        let currencyListButtonConfiguration = UIImage.SymbolConfiguration(pointSize: 25, weight: .thin)
+                        let currencyListButtonImage = UIImage(systemName: "delete.left.fill", withConfiguration: currencyListButtonConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+                        numberButton.setImage(currencyListButtonImage, for: UIControl.State())
+                    case "A":
+                        numberButton.backgroundColor = .systemBlue
+                        numberButton.setTitle("", for: UIControl.State())
+                        numberButton.tag = 3
+                        let currencyListButtonConfiguration = UIImage.SymbolConfiguration(pointSize: 25, weight: .thin)
+                        let currencyListButtonImage = UIImage(systemName: "trash.fill", withConfiguration: currencyListButtonConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+                        numberButton.setImage(currencyListButtonImage, for: UIControl.State())
+                    default:
+                        print("nada")
+                    }
                     NSLayoutConstraint.activate([
                         numberButton.heightAnchor.constraint(equalToConstant: 60),
                         numberButton.widthAnchor.constraint(equalToConstant: 60)

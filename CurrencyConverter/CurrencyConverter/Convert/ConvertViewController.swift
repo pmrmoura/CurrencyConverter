@@ -102,7 +102,7 @@ final class ConvertViewController: UIViewController {
     
     @objc func onClick(_ sender: AnyObject) {
         let value = String(sender.currentTitle!)
-        viewModel.handleNumberChange(number: value)
+        viewModel.handleNumberChange(number: value, tag: sender.tag)
     }
     
     @objc func navigateToCurrencyList() {
