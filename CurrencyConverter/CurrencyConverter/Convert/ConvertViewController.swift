@@ -98,6 +98,27 @@ final class ConvertViewController: UIViewController {
         viewModel.$destinationCountry
             .assign(to: \.selectedCountry, on: convertView.destinationCurrency)
             .store(in: &bindings)
+        
+        viewModel.$isLoading
+            .assign(to: \.isLoading, on: self.convertView)
+            .store(in: &bindings)
+        
+        let stateValueHandler: (ConvertViewModelState) -> Void = { [weak self] state in
+            switch state {
+            case .loading:
+                self?.convertView.startLoading()
+            case .finishedLoading:
+                self?.convertView.finishLoading()
+            case .error(let error):
+                self?.convertView.finishLoading()
+                self?.showError(error)
+            }
+        }
+        
+        viewModel.$state
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: stateValueHandler)
+            .store(in: &bindings)
     }
     
     @objc func onClick(_ sender: AnyObject) {
@@ -118,8 +139,17 @@ final class ConvertViewController: UIViewController {
         case .destination:
             viewModel.setDestinationCountry(selectedCurrency: listViewController.viewModel.selectedCurrency)
         case .none:
-            print("none")
+            break
         }
+    }
+    
+    private func showError(_ error: Error) {
+        let alertController = UIAlertController(title: "Erro", message: "Ocorreu um erro ao recuperar a última cotação", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default) { [unowned self] _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
     }
 
 }

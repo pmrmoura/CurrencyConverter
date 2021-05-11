@@ -62,8 +62,7 @@ final class KeyboardView: UIView, ViewCode {
                         let currencyListButtonConfiguration = UIImage.SymbolConfiguration(pointSize: 25, weight: .thin)
                         let currencyListButtonImage = UIImage(systemName: "trash.fill", withConfiguration: currencyListButtonConfiguration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
                         numberButton.setImage(currencyListButtonImage, for: UIControl.State())
-                    default:
-                        print("nada")
+                    default: break
                     }
                     NSLayoutConstraint.activate([
                         numberButton.heightAnchor.constraint(equalToConstant: 60),

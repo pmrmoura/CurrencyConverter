@@ -51,6 +51,23 @@ final class ListViewController: UIViewController {
         viewModel.$isLoading
             .assign(to: \.isLoading, on: self.listView)
             .store(in: &bindings)
+        
+        let stateValueHandler: (ListViewModelState) -> Void = { [weak self] state in
+            switch state {
+            case .loading:
+                self?.listView.startLoading()
+            case .finishedLoading:
+                self?.listView.finishLoading()
+            case .error(let error):
+                self?.listView.finishLoading()
+                self?.showError(error)
+            }
+        }
+        
+        viewModel.$state
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: stateValueHandler)
+            .store(in: &bindings)
     }
     
       func setupTableView() {
@@ -59,6 +76,16 @@ final class ListViewController: UIViewController {
         listView.tableView.delegate = self
         self.viewModel.fetchCurrencies()
       }
+    
+    private func showError(_ error: Error) {
+        let alertController = UIAlertController(title: "Erro", message: "Ocorreu um erro ao listar as moedas disponíveis", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default) { [unowned self] _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
+    }
+
 }
 
 extension ListViewController: UITableViewDataSource {
@@ -99,7 +126,5 @@ extension ListViewController: UITableViewDelegate {
         let selectedCurrency = Currency(currencyCode: selectedCell.countryName.text!, countryName: selectedCell.countryCode.text!, countryFlag: selectedCell.countryFlag.text!)
         
         viewModel.selectCurrency(selectedCurrency: selectedCurrency)
-    
-        print(viewModel.selectedCurrency)
     }
 }

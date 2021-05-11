@@ -29,7 +29,7 @@ final class ListCurrencyServices: CurrencyListServiceProtocol {
         
         return Future<[String: String], Error> { promise in
             let url = URL(string: "http://api.currencylayer.com/list?access_key=\(apiKey)&format=1")!
-            dataTask = URLSession.shared.dataTask(with: url) { (data, _, error) in
+            dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 guard let data = data else {
                     if let error = error {
                         promise(.failure(error))

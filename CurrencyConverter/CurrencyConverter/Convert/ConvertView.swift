@@ -24,6 +24,12 @@ final class ConvertView: UIView, ViewCode {
     lazy var destinationCurrency = SelectCountryView()
     lazy var keyboard = KeyboardView()
     
+    lazy var activityIndicator = ActivityIndicatorView(style: .medium)
+    
+    var isLoading: Bool = false {
+        didSet { isLoading ? startLoading() : finishLoading() }
+    }
+    
     var originValueText = "" {
         didSet {
             self.originValue.text = originValueText
@@ -45,9 +51,23 @@ final class ConvertView: UIView, ViewCode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func startLoading() {
+        isUserInteractionEnabled = false
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    func finishLoading() {
+        isUserInteractionEnabled = true
+        activityIndicator.stopAnimating()
+    }
+    
     func addSubViews() {
         self.addSubview(mainVStack)
         self.mainVStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.addSubview(activityIndicator)
+        self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         [currencyListHStack, selectCountriesVStack, valuesToConvertHStack, keyboard]
             .forEach {
@@ -88,7 +108,12 @@ final class ConvertView: UIView, ViewCode {
             self.valuesToConvertHStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             
             self.keyboard.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            self.keyboard.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
+            self.keyboard.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
+            activityIndicator.heightAnchor.constraint(equalToConstant: 50),
+            activityIndicator.widthAnchor.constraint(equalToConstant: 50.0)
         ])
     }
     

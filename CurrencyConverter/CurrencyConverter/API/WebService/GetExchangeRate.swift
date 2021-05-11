@@ -30,9 +30,9 @@ final class GetExchangeRateServices: GetExchangeRateProtocol {
         return Future<[String: Double], Error> { promise in
             let url = URL(string: "http://api.currencylayer.com/live?access_key=\(apiKey)&format=1")!
             dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                print(response)
                 guard let data = data else {
                     if let error = error {
+                        print(error)
                         promise(.failure(error))
                     }
                     return
@@ -50,5 +50,3 @@ final class GetExchangeRateServices: GetExchangeRateProtocol {
         .eraseToAnyPublisher()
     }
 }
-
-

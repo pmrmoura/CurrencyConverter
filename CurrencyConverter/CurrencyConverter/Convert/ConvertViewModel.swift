@@ -36,9 +36,10 @@ final class ConvertViewModel {
         self.isLoading = true
         
         let searchTermCompletionHandler: (Subscribers.Completion<Error>) -> Void = { [weak self] completion in
-            print(completion)
             switch completion {
-            case .failure(let error): self?.state = .error(error)
+            case .failure(let error):
+                self?.state = .error(error)
+                self?.isLoading = false
             case .finished: self?.state = .finishedLoading
             }
         }
